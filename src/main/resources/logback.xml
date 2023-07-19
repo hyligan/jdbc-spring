@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="false">
+    <shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d %-5level [%thread] %logger{0}: %msg%n</pattern>
+        </encoder>
+    </appender>
+<!--    <appender name="AMQP" class="org.springframework.amqp.rabbit.logback.AmqpAppender">-->
+<!--        <layout>-->
+<!--            <pattern><![CDATA[ %d %p %t [%c] - <%m>%n ]]></pattern>-->
+<!--        </layout>-->
+<!--        <host>localhost</host>-->
+<!--        <port>5672</port>-->
+<!--        <username>guest</username>-->
+<!--        <password>guest</password>-->
+<!--        <exchangeName>logging.application.serilog</exchangeName>-->
+<!--        <abbreviation>36</abbreviation>-->
+<!--        <includeCallerData>false</includeCallerData>-->
+<!--        <applicationId>${AMQP_APP_ID}</applicationId>-->
+<!--        <routingKeyPattern>%property{applicationId}.%c.%p</routingKeyPattern>-->
+<!--        <generateId>true</generateId>-->
+<!--        <charset>UTF-8</charset>-->
+<!--        <durable>false</durable>-->
+<!--        <deliveryMode>NON_PERSISTENT</deliveryMode>-->
+<!--        <declareExchange>true</declareExchange>-->
+<!--        <addMdcAsHeaders>false</addMdcAsHeaders>-->
+<!--    </appender>-->
+
+    <logger name="ch.qos.logback" level="INFO"/>
+    <logger name="org.apache" level="INFO"/>
+    <logger name="org.hibernate" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="com.goit.jdbcspring" level="INFO"/>
+
+
+<!--    <root level="#logback.loglevel#">-->
+    <root name = "com.goit.jdbcspring" level="INFO">
+        <appender-ref ref="CONSOLE"/>
+<!--        <appender-ref ref="AMQP"/>-->
+    </root>
+</configuration>
