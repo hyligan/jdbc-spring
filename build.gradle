@@ -3,7 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '2.7.6'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'org.flywaydb.flyway' version '6.4.3'
-	id 'com.bmuschko.docker-spring-boot-application' version '6.1.4'
+	id 'com.google.cloud.tools.jib' version '3.3.1'
 
 }
 
@@ -35,18 +35,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-//	implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
-//<dependency>
-//    <groupId>org.springframework.boot</groupId>
-//    <artifactId>spring-boot-starter-validation</artifactId>
-//</dependency>
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
+
+jib {
+	from {
+		image = 'openjdk:11'
+	}
+	to {
+		image = 'dev12/springjdbc:1.0'
+	}
 }
